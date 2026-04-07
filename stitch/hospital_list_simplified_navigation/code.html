@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hospital Search Results | The Clinical Sanctuary</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Public+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#0a0f0f",
+                    "on-background": "#2a3435",
+                    "surface-container": "#e7eff0",
+                    "surface-tint": "#006a71",
+                    "on-secondary": "#e7fdff",
+                    "primary": "#006a71",
+                    "surface-container-highest": "#dae5e5",
+                    "background": "#f6fafa",
+                    "error-dim": "#67040d",
+                    "on-secondary-fixed": "#2b4346",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#a9b4b5",
+                    "error": "#a83836",
+                    "surface-container-high": "#e1eaea",
+                    "tertiary-fixed-dim": "#9bc0e0",
+                    "primary-fixed": "#96f1fa",
+                    "on-tertiary-container": "#1f4561",
+                    "primary-container": "#96f1fa",
+                    "on-error": "#fff7f6",
+                    "on-secondary-container": "#3d5658",
+                    "primary-dim": "#005d63",
+                    "error-container": "#fa746f",
+                    "outline": "#727d7e",
+                    "on-error-container": "#6e0a12",
+                    "surface-container-low": "#eef5f5",
+                    "tertiary": "#3f637f",
+                    "secondary-fixed": "#cce8ea",
+                    "on-tertiary-fixed": "#03314c",
+                    "on-surface-variant": "#566162",
+                    "surface-bright": "#f6fafa",
+                    "tertiary-fixed": "#a9cdef",
+                    "on-tertiary": "#f6f9ff",
+                    "tertiary-dim": "#325673",
+                    "secondary-dim": "#3f575a",
+                    "secondary-fixed-dim": "#bed9dc",
+                    "secondary-container": "#cce8ea",
+                    "on-primary-fixed": "#00474c",
+                    "inverse-primary": "#99f4fd",
+                    "on-primary-container": "#005b61",
+                    "surface-dim": "#d1dcdd",
+                    "on-primary": "#e7fdff",
+                    "secondary": "#4a6366",
+                    "primary-fixed-dim": "#88e3eb",
+                    "on-tertiary-fixed-variant": "#294e6a",
+                    "surface": "#f6fafa",
+                    "tertiary-container": "#a9cdef",
+                    "on-primary-fixed-variant": "#00666d",
+                    "surface-variant": "#dae5e5",
+                    "on-surface": "#2a3435",
+                    "inverse-on-surface": "#999e9e",
+                    "on-secondary-fixed-variant": "#476062"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Public Sans"],
+                    "label": ["Public Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Public Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f6fafa]/80 dark:bg-slate-900/80 backdrop-blur-md flex items-center justify-between px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#007B83]" data-icon="location_on">location_on</span>
+<span class="font-['Manrope'] font-bold text-[#007B83] dark:text-[#00b0ba] tracking-tighter">The Clinical Sanctuary</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex gap-6 mr-6">
+<a class="font-['Public_Sans'] font-medium text-[#2a3435] hover:text-[#007B83] transition-colors" href="#">Home</a>
+<a class="font-['Public_Sans'] font-bold text-[#007B83]" href="#">AI Search</a>
+<a class="font-['Public_Sans'] font-medium text-[#2a3435] hover:text-[#007B83] transition-colors" href="#">Profile</a>
+</div>
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container" data-alt="Close up portrait of a professional healthcare specialist with a friendly expression in a bright clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXdID4EcG0_614Jltnd1HZ7kDcifXo_eA5SmZUsDR-Aiys2ssllObeWLwmiFOS84m9Mi6wNe7RcXd7QtagT4XuScz7_VpP_dXqE3KwuqieszUen12kE0GMx3C80cvv9fZKPBJNg5lSQsWH7bn6ZZSNaNsrHkhNsxeBRrygxE9zAIuN_7SjF2vqFzgSDv4RkIqEwABzKSpN9qgkfPssmXsrRZqCv5B2XQChlJbGKy_NG2EO2Vd4xGMPkeHaV5dxabogIn5u-EWRDiTy"/>
+</div>
+</nav>
+<main class="pt-24 pb-32 px-6 max-w-4xl mx-auto">
+<!-- Search Header Section -->
+<header class="mb-10">
+<div class="flex items-center gap-2 text-primary font-semibold mb-2">
+<span class="material-symbols-outlined text-sm" data-icon="near_me">near_me</span>
+<span class="text-sm tracking-widest uppercase font-label">Current Location</span>
+</div>
+<h1 class="text-4xl font-extrabold text-on-background tracking-tight mb-4">Nearby Care</h1>
+<p class="text-on-surface-variant text-lg max-w-xl">Find specialized clinical support within your immediate sanctuary radius.</p>
+</header>
+<!-- Map Toggle Section -->
+<section class="mb-12">
+<div class="relative group overflow-hidden rounded-3xl bg-surface-container-low h-48 md:h-64 shadow-sm">
+<img alt="Map View" class="w-full h-full object-cover opacity-80" data-alt="Abstracted minimal map visualization with soft teal and grey tones showing medical facility pins across an urban landscape" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4Y73pUhE_JCZbO8rBBYqWG1-W2G7ZZtKYJ2cOdpOPy-tV_uTcIv_EzDwZrotvtLGF9h5LLlUYLEyui8ny-D5uLp1zYl0kCxbK5pqSWMv7E3I1yYTNZF2mAL0qppzxIHnoSEZF3_JWhJ4urYLKmRUvUtpNpwnDoG_SxqipZh56AKWU_fDA95Xl2Dm9nbhgWC0_9PVRGIRtJ6YjDnyteZZgvaKz9S2YL-H8BYsmr6snuQICneVq__QM5865JQZKDjTgaz-AGJtYD88h"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent"></div>
+<button class="absolute bottom-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-xl text-primary font-bold text-sm shadow-xl flex items-center gap-2 hover:bg-white transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="fullscreen">fullscreen</span>
+                    Expand Map
+                </button>
+</div>
+</section>
+<!-- Filter & Count -->
+<div class="flex items-center justify-between mb-8">
+<span class="text-on-surface-variant font-medium">8 Hospitals found nearby</span>
+<button class="flex items-center gap-2 text-primary font-semibold hover:bg-primary-container/20 px-4 py-2 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                Refine
+            </button>
+</div>
+<!-- Hospital List -->
+<div class="space-y-6">
+<!-- Result Item 1 (Featured/Closest) -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 flex flex-col md:flex-row items-start md:items-center gap-6 shadow-[0_4px_20px_rgba(0,123,131,0.04)] border border-primary-container/10">
+<div class="w-full md:w-24 h-24 rounded-2xl bg-surface-container-low overflow-hidden flex-shrink-0">
+<img alt="St. Jude Sanctuary" class="w-full h-full object-cover" data-alt="Modern hospital exterior with glass facade and architectural lighting in a clean urban environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXy5bYQ9Oj2yVnt0FVfVlFqTyrGbSQ8Z4KM5ItgKtTVS4PfZanQoU2ccY1TKQQhNpfVFg8ti32N2Xrb3vHT9To1GBRimySdLWQHYiwpiJV5yDdaYlEUiNyXYtTlSEXomHbKb660EK2YW6tTkAUkqT2fUm-lV_IdTetSXBqDS5FNrg5FUxn7glFU57xQ50sVWO57DWgZtpaJbpvR160g-NUMPLOCpHBbZlOH3CWZTfX60GItWVYZsVdYLgzCNc3eS9_I5W2BHQ_O49d"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-start justify-between mb-1">
+<h3 class="text-xl font-bold text-on-background">St. Jude Sanctuary</h3>
+<div class="flex items-center gap-1 bg-primary-container/30 px-2 py-1 rounded-lg text-primary font-bold text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill">star</span>
+                            4.9
+                        </div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-sm mb-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="distance">distance</span> 500m away</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> Open 24/7</span>
+</div>
+<div class="flex gap-3">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-primary-dim transition-colors active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-lg" data-icon="call">call</span>
+                            Call Now
+                        </button>
+<button class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-xl font-bold hover:bg-surface-container-high transition-colors active:scale-95">
+                            Details
+                        </button>
+</div>
+</div>
+</div>
+<!-- Result Item 2 -->
+<div class="bg-surface-container-low/40 rounded-3xl p-6 flex flex-col md:flex-row items-start md:items-center gap-6 transition-all hover:bg-surface-container-low">
+<div class="w-full md:w-24 h-24 rounded-2xl bg-surface-container-low overflow-hidden flex-shrink-0">
+<img alt="Grace Memorial" class="w-full h-full object-cover grayscale opacity-80" data-alt="Interior of a luxury medical clinic lobby with minimalist furniture and soft ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhTb7lzFXSh5cUzABL8M6QQgEqjuTZILilu3welaPXQu-0OyZFGJCsMPlx7h8zLieVomkL9hC7JRMmiPcOxakqm-quRNzA3fVlK3FdMpDN03FKc7-x9Ex2HJ0Bv2Yy34E4sCPyD1iYytpt9iUdtoJVPZq5bBMFe8aj023HLXrZL6YGFP_HLuPEWFWMZqd8BZ51Tn7H25l4ZFLSN1NEDzsEEB1V7AodpeX-8oz5EzJeEl9HPQv0iLklIuPBgE4P80FiXUgdD5uC0k8u"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-start justify-between mb-1">
+<h3 class="text-xl font-bold text-on-background">Grace Memorial Center</h3>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded-lg text-on-surface-variant font-bold text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill">star</span>
+                            4.7
+                        </div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-sm mb-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="distance">distance</span> 1.2km away</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> Closes at 10PM</span>
+</div>
+<div class="flex gap-3">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-primary-dim transition-colors active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="call">call</span>
+                            Call Now
+                        </button>
+<button class="bg-surface-container-highest/50 text-on-surface px-6 py-2 rounded-xl font-bold hover:bg-surface-container-highest transition-colors active:scale-95">
+                            Details
+                        </button>
+</div>
+</div>
+</div>
+<!-- Result Item 3 -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 flex flex-col md:flex-row items-start md:items-center gap-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+<div class="w-full md:w-24 h-24 rounded-2xl bg-surface-container-low overflow-hidden flex-shrink-0">
+<img alt="City Health Institute" class="w-full h-full object-cover" data-alt="Abstract architectural shot of a clinical hallway with rhythmic lighting and white surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDutMJM5BbPTnuhdLDHW0mmUvx-LzK_nlB2JOQ-k_lF8NEZZw3S9_8YH3bFrbvRn3PRvyo7XB7DoCIxHf6Cl7IFtvSXkAzWAeX-fT6yhiat4_r6Bk69qBqGO9zrm0silXqeGNF3LjljNUjhKBonXWQbugEsddmkjYzHJjfhME3rwd1vCaBHQu6LynmxXp2E99dSQr-ajaOwmJcHEu96etVx_YZGZ4txMx3Aae1R_AruZLKhcLBru3OpKXUFr8wp9gK86qkAfR8zJ-fE"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-start justify-between mb-1">
+<h3 class="text-xl font-bold text-on-background">City Health Institute</h3>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded-lg text-on-surface-variant font-bold text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill">star</span>
+                            4.5
+                        </div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-sm mb-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="distance">distance</span> 2.8km away</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> Open 24/7</span>
+</div>
+<div class="flex gap-3">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-primary-dim transition-colors active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="call">call</span>
+                            Call Now
+                        </button>
+<button class="bg-surface-container-highest/50 text-on-surface px-6 py-2 rounded-xl font-bold hover:bg-surface-container-highest transition-colors active:scale-95">
+                            Details
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More Utility -->
+<div class="mt-12 text-center">
+<button class="text-primary font-bold text-sm tracking-widest uppercase py-4 px-8 rounded-full border-2 border-primary/10 hover:border-primary/30 transition-all active:scale-95">
+                Load More Destinations
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) - Updated from COMPONENTS_9 -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-8 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-50 rounded-t-3xl shadow-[0_-4px_24px_rgba(42,52,53,0.06)]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-6 py-2 hover:text-teal-600 dark:hover:text-teal-400 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-manrope text-[11px] font-medium uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-2xl px-6 py-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span class="font-manrope text-[11px] font-medium uppercase tracking-widest mt-1">List</span>
+</a>
+</nav>
+</body></html>

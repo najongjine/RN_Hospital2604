@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Clinical Sanctuary - Hospital Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Public+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#0a0f0f",
+                    "on-background": "#2a3435",
+                    "surface-container": "#e7eff0",
+                    "surface-tint": "#006a71",
+                    "on-secondary": "#e7fdff",
+                    "primary": "#006a71",
+                    "surface-container-highest": "#dae5e5",
+                    "background": "#f6fafa",
+                    "error-dim": "#67040d",
+                    "on-secondary-fixed": "#2b4346",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#a9b4b5",
+                    "error": "#a83836",
+                    "surface-container-high": "#e1eaea",
+                    "tertiary-fixed-dim": "#9bc0e0",
+                    "primary-fixed": "#96f1fa",
+                    "on-tertiary-container": "#1f4561",
+                    "primary-container": "#96f1fa",
+                    "on-error": "#fff7f6",
+                    "on-secondary-container": "#3d5658",
+                    "primary-dim": "#005d63",
+                    "error-container": "#fa746f",
+                    "outline": "#727d7e",
+                    "on-error-container": "#6e0a12",
+                    "surface-container-low": "#eef5f5",
+                    "tertiary": "#3f637f",
+                    "secondary-fixed": "#cce8ea",
+                    "on-tertiary-fixed": "#03314c",
+                    "on-surface-variant": "#566162",
+                    "surface-bright": "#f6fafa",
+                    "tertiary-fixed": "#a9cdef",
+                    "on-tertiary": "#f6f9ff",
+                    "tertiary-dim": "#325673",
+                    "secondary-dim": "#3f575a",
+                    "secondary-fixed-dim": "#bed9dc",
+                    "secondary-container": "#cce8ea",
+                    "on-primary-fixed": "#00474c",
+                    "inverse-primary": "#99f4fd",
+                    "on-primary-container": "#005b61",
+                    "surface-dim": "#d1dcdd",
+                    "on-primary": "#e7fdff",
+                    "secondary": "#4a6366",
+                    "primary-fixed-dim": "#88e3eb",
+                    "on-tertiary-fixed-variant": "#294e6a",
+                    "surface": "#f6fafa",
+                    "tertiary-container": "#a9cdef",
+                    "on-primary-fixed-variant": "#00666d",
+                    "surface-variant": "#dae5e5",
+                    "on-surface": "#2a3435",
+                    "inverse-on-surface": "#999e9e",
+                    "on-secondary-fixed-variant": "#476062"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Public Sans"],
+                    "label": ["Public Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Public Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f6fafa]/80 dark:bg-slate-900/80 backdrop-blur-md">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#007B83]" data-icon="location_on">location_on</span>
+<span class="font-['Manrope'] font-bold text-[#007B83] dark:text-[#00b0ba] tracking-tighter text-lg">The Clinical Sanctuary</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional healthcare provider with a kind smile, clean clinical background, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBKfKAQfdQqHAoGzRHWbWuZIZSW8dF0B6sFXG4aEOypSuaOe2bNMqrhRNv0Yhzj3Tg6XFhpTAYomwdWlHqiZo95zw-HIP9ZBTfGg8RT8IE-J9U3LzpHhpro7T58gATzoH1WLrsIuHJgqZNtnZwQJTkGSsUDNZEIWo5wddgZ7jkCv8MD2AjuRoa-Qs-foTGKCqWoxBPJ_ES5wVXGTL7GfUDjJcVwjRNPYE25yQLGZC6KTsbF97TgONfQKweVvn3Gfu55zuzjO2rthIp"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-5xl mx-auto flex flex-col items-center min-h-screen">
+<!-- Hero AI Search -->
+<section class="mt-8 mb-12 w-full">
+<h1 class="text-3xl font-extrabold tracking-tight text-on-background mb-8 max-w-md mx-auto text-center">
+            Find the care you need, <span class="text-primary">effortlessly.</span>
+</h1>
+<div class="relative group max-w-2xl mx-auto">
+<div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<input class="w-full bg-surface-container-low border-none rounded-3xl py-6 pl-14 pr-6 text-lg font-medium placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all shadow-sm" placeholder="Ask AI: Where should I go?" type="text"/>
+<div class="absolute inset-y-2 right-2 flex items-center">
+<button class="bg-primary text-on-primary px-6 h-full rounded-2xl font-semibold text-sm hover:bg-primary-dim transition-colors flex items-center gap-2">
+                    Seek Advice
+                </button>
+</div>
+</div>
+<p class="mt-4 text-sm text-outline-variant font-medium flex items-center justify-center gap-2 px-2">
+<span class="material-symbols-outlined text-xs" data-icon="info">info</span>
+            Describe your symptoms or a specific department.
+        </p>
+</section>
+<section class="w-full max-w-2xl mx-auto mt-12 mb-8">
+<div class="grid grid-cols-3 gap-y-10 gap-x-4">
+<a class="flex flex-col items-center group" href="#">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-sm">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<span class="mt-3 text-sm font-medium text-on-surface/80 group-hover:text-primary transition-colors">내과</span>
+</a>
+<a class="flex flex-col items-center group" href="#">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-sm">
+<span class="material-symbols-outlined text-3xl">hand_bones</span>
+</div>
+<span class="mt-3 text-sm font-medium text-on-surface/80 group-hover:text-primary transition-colors">정형외과</span>
+</a>
+<a class="flex flex-col items-center group" href="#">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-sm">
+<span class="material-symbols-outlined text-3xl">hearing</span>
+</div>
+<span class="mt-3 text-sm font-medium text-on-surface/80 group-hover:text-primary transition-colors">이비인후과</span>
+</a>
+<a class="flex flex-col items-center group" href="#">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-sm">
+<span class="material-symbols-outlined text-3xl">eco</span>
+</div>
+<span class="mt-3 text-sm font-medium text-on-surface/80 group-hover:text-primary transition-colors">한의원</span>
+</a>
+<a class="flex flex-col items-center group" href="#">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-sm">
+<span class="material-symbols-outlined text-3xl">child_care</span>
+</div>
+<span class="mt-3 text-sm font-medium text-on-surface/80 group-hover:text-primary transition-colors">소아과</span>
+</a>
+<a class="flex flex-col items-center group" href="#">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-300 shadow-sm">
+<span class="material-symbols-outlined text-3xl">face</span>
+</div>
+<span class="mt-3 text-sm font-medium text-on-surface/80 group-hover:text-primary transition-colors">피부과</span>
+</a>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-8 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-50 rounded-t-3xl shadow-[0_-4px_24px_rgba(42,52,53,0.06)]">
+<a class="flex flex-col items-center justify-center bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-2xl px-6 py-2 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Manrope'] text-[11px] font-medium uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-6 py-2 hover:text-teal-600 dark:hover:text-teal-400 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span class="font-['Manrope'] text-[11px] font-medium uppercase tracking-widest mt-1">List</span>
+</a>
+</nav>
+<!-- Floating Action Button -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center active:scale-95 duration-200 z-40">
+<span class="material-symbols-outlined text-2xl" data-icon="calendar_add_on">calendar_add_on</span>
+</button>
+</body></html>

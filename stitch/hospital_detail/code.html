@@ -1,0 +1,245 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Public_Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#0a0f0f",
+                    "on-background": "#2a3435",
+                    "surface-container": "#e7eff0",
+                    "surface-tint": "#006a71",
+                    "on-secondary": "#e7fdff",
+                    "primary": "#006a71",
+                    "surface-container-highest": "#dae5e5",
+                    "background": "#f6fafa",
+                    "error-dim": "#67040d",
+                    "on-secondary-fixed": "#2b4346",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#a9b4b5",
+                    "error": "#a83836",
+                    "surface-container-high": "#e1eaea",
+                    "tertiary-fixed-dim": "#9bc0e0",
+                    "primary-fixed": "#96f1fa",
+                    "on-tertiary-container": "#1f4561",
+                    "primary-container": "#96f1fa",
+                    "on-error": "#fff7f6",
+                    "on-secondary-container": "#3d5658",
+                    "primary-dim": "#005d63",
+                    "error-container": "#fa746f",
+                    "outline": "#727d7e",
+                    "on-error-container": "#6e0a12",
+                    "surface-container-low": "#eef5f5",
+                    "tertiary": "#3f637f",
+                    "secondary-fixed": "#cce8ea",
+                    "on-tertiary-fixed": "#03314c",
+                    "on-surface-variant": "#566162",
+                    "surface-bright": "#f6fafa",
+                    "tertiary-fixed": "#a9cdef",
+                    "on-tertiary": "#f6f9ff",
+                    "tertiary-dim": "#325673",
+                    "secondary-dim": "#3f575a",
+                    "secondary-fixed-dim": "#bed9dc",
+                    "secondary-container": "#cce8ea",
+                    "on-primary-fixed": "#00474c",
+                    "inverse-primary": "#99f4fd",
+                    "on-primary-container": "#005b61",
+                    "surface-dim": "#d1dcdd",
+                    "on-primary": "#e7fdff",
+                    "secondary": "#4a6366",
+                    "primary-fixed-dim": "#88e3eb",
+                    "on-tertiary-fixed-variant": "#294e6a",
+                    "surface": "#f6fafa",
+                    "tertiary-container": "#a9cdef",
+                    "on-primary-fixed-variant": "#00666d",
+                    "surface-variant": "#dae5e5",
+                    "on-surface": "#2a3435",
+                    "inverse-on-surface": "#999e9e",
+                    "on-secondary-fixed-variant": "#476062"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Public Sans"],
+                    "label": ["Public Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Public Sans', sans-serif; background-color: #f6fafa; color: #2a3435; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f6fafa]/80 backdrop-blur-md">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#007B83]" data-icon="location_on" style="">location_on</span>
+<span class="font-['Manrope'] font-bold text-[#007B83] tracking-tighter text-lg" style="">The Clinical Sanctuary</span>
+</div>
+<div class="h-10 w-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden active:scale-95 duration-200">
+<img alt="User Profile" class="h-full w-full object-cover" data-alt="Close-up professional portrait of a smiling person with neutral studio lighting and clean minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC_SVSlM-ZEqwYw8eNQN8sPLxqMVntJNpjVpb6l78jbX1OHE_nFiz9PMpOGUBtP-jtVnZ0etjuv6m_IG2PgNYZ30Or1f5f_hIUc5RRTva0Si3V8n-OIog5MXz7JKWO7mr1o42EWSOcdgmznaAm_v_HiufqLcjvNwRH2wRXPuo-4TETA7ZZk7WZhm6Klmb5-8oysGdo5mMoNvdjWUSwLWz9P39R5KrZP-waHfy6F3MPgylAHzV_41v-k_1ksi7PDjtsO71qnj_KusJ_" style="">
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-5xl mx-auto space-y-12">
+<!-- Hero Information -->
+<section class="space-y-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-2 max-w-2xl">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-full w-fit">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase" style="">Open Now • 24/7 Care</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-tight" style="">
+                        St. Catherine's <br>Advanced Medical Center
+                    </h1>
+<p class="text-on-surface-variant text-lg flex items-start gap-2" style="">
+<span class="material-symbols-outlined text-outline mt-1" data-icon="place" style="">place</span>
+                        742 Clinical Way, North Sanctuary Heights, WA 98101
+                    </p>
+</div>
+</div>
+<!-- Primary Action Buttons -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<button class="bg-primary text-on-primary rounded-xl px-6 py-4 flex items-center justify-center gap-3 font-semibold text-lg active:scale-95 transition-transform shadow-sm" style="">
+<span class="material-symbols-outlined" data-icon="call" style="">call</span>
+                    Call Facility
+                </button>
+<button class="bg-secondary-container text-on-secondary-container rounded-xl px-6 py-4 flex items-center justify-center gap-3 font-semibold text-lg active:scale-95 transition-transform" style="">
+<span class="material-symbols-outlined" data-icon="near_me" style="">near_me</span>
+                    Navigate
+                </button>
+<button class="bg-surface-container-lowest text-primary border border-primary/20 rounded-xl px-6 py-4 flex items-center justify-center gap-3 font-semibold text-lg active:scale-95 transition-transform shadow-sm" style="">
+<span class="material-symbols-outlined" data-icon="calendar_month" style="">calendar_month</span>
+                    Book Appointment
+                </button>
+</div>
+</section>
+<!-- Bento Layout for Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Map Snippet (6/12) -->
+<div class="md:col-span-7 bg-surface-container-low rounded-[2rem] overflow-hidden relative min-h-[350px]">
+<img alt="Hospital Map Location" class="w-full h-full object-cover" data-alt="High-resolution minimal map interface showing clean white roads, soft teal water features, and a surgical clinic pin icon" data-location="Seattle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBbhPh3Jjp0FQ7KEKiknZ3cIG82zmTQc2AdW8nZQehycCE-5YOCDrnMTPiLU8_mHkFB2JEXZniXR9FMQmoJacscDWXnd8flqIQwnBUXTz34NiB5cyrsyAbBsixNka-HdaFfjI1PPiyk_NrHxXO9sUGJmTG7kkb_vHeMyhgbk7BqUoFEiloQchFc_ZqbZNyf8mCu1NNkXBC0T6tOwwR6jqaOiq42AcWscC6cw6CRM7tzw9MGlmMvpIaQW8MRwU1ZyiW2DRmsPFtcK8x" style="">
+<div class="absolute bottom-6 left-6 right-6 p-4 bg-white/80 backdrop-blur-xl rounded-2xl flex items-center justify-between border border-white/40">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg text-white">
+<span class="material-symbols-outlined" data-icon="directions_car" style="">directions_car</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest" style="">Estimated Arrival</p>
+<p class="font-bold text-on-surface" style="">12 mins in current traffic</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Services Provided (5/12) -->
+<div class="md:col-span-5 flex flex-col gap-6">
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] shadow-[0_4px_24px_rgba(42,52,53,0.04)] flex-1">
+<h3 class="text-xl font-bold mb-6 flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-primary" data-icon="medical_services" style="">medical_services</span>
+                        Specialized Care
+                    </h3>
+<ul class="space-y-4">
+<li class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container-high" style="">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="cardiology" style="">cardiology</span>
+<span class="font-medium" style="">Cardiovascular Unit</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right" style="">chevron_right</span>
+</li>
+<li class="flex items-center justify-between p-3 rounded-xl transition-colors hover:bg-surface-container-high" style="">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="neurology" style="">neurology</span>
+<span class="font-medium" style="">Neuroscience Center</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right" style="">chevron_right</span>
+</li>
+<li class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container-high" style="">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="emergency" style="">emergency</span>
+<span class="font-medium" style="">24/7 Trauma Care</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right" style="">chevron_right</span>
+</li>
+<li class="flex items-center justify-between p-3 rounded-xl transition-colors hover:bg-surface-container-high" style="">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="oncology" style="">oncology</span>
+<span class="font-medium" style="">Oncology Institute</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right" style="">chevron_right</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Operating Vitals/Status -->
+<div class="md:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-surface-container-low p-6 rounded-3xl flex flex-col gap-2">
+<p class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase" style=""><br></p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-primary" style="">15</span>
+<span class="text-sm font-medium text-secondary" style="">min wait</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-3xl border border-primary/10 flex flex-col gap-2 shadow-sm">
+<p class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase" style="">Capacity Status</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-secondary" style="">Normal</span>
+<span class="text-sm font-medium text-secondary" style="">Traffic</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-3xl flex flex-col gap-2">
+<p class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase" style="">Doctors On-Site</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-primary" style="">42</span>
+<span class="text-sm font-medium text-secondary" style="">Active</span>
+</div>
+</div>
+<div class="bg-primary text-white p-6 rounded-3xl flex flex-col gap-2 shadow-lg shadow-primary/20">
+<p class="text-[10px] font-bold tracking-[0.2em] text-white/70 uppercase" style="">Patient Rating</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold" style="">4.9</span>
+<span class="material-symbols-outlined text-white/70 text-sm" data-icon="star" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#f6fafa]/80 backdrop-blur-xl z-50 rounded-t-3xl border-t border-[#a9b4b5]/15 shadow-[0_-4px_24px_rgba(42,52,53,0.06)]">
+<a class="flex flex-col items-center justify-center text-[#2a3435] p-2 hover:text-[#007B83] transition-all active:scale-90 duration-300" href="#" style="">
+<span class="material-symbols-outlined mb-1" data-icon="home" style="">home</span>
+<span class="font-['Public_Sans'] text-[11px] font-medium uppercase tracking-widest" style="">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#007B83] text-white rounded-2xl px-5 py-2 active:scale-90 duration-300" href="#" style="">
+<span class="material-symbols-outlined mb-1" data-icon="auto_awesome" style="">auto_awesome</span>
+<span class="font-['Public_Sans'] text-[11px] font-medium uppercase tracking-widest" style="">AI Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2a3435] p-2 hover:text-[#007B83] transition-all active:scale-90 duration-300" href="#" style="">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="">person</span>
+<span class="font-['Public_Sans'] text-[11px] font-medium uppercase tracking-widest" style="">Profile</span>
+</a>
+</nav>
+</body></html>
