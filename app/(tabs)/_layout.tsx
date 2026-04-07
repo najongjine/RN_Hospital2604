@@ -28,6 +28,25 @@ export default function TabLayout() {
             ),
           }}
         />
+        <Tabs.Screen
+          name="ListScreen"
+          options={{
+            title: "목록",
+            tabBarIcon: ({ color }) => (
+              <IconSymbol size={28} name="list.bullet" color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="DetailScreen"
+          options={{
+            title: "상세",
+            href: null,
+            tabBarIcon: ({ color }) => (
+              <IconSymbol size={28} name="list.bullet" color={color} />
+            ),
+          }}
+        />
       </Tabs>
     </SafeAreaProvider>
   );
