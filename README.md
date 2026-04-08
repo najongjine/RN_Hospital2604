@@ -1,3 +1,8 @@
+https://developers.kakao.com/tool/rest-api/open/get/v2-local-search-keyword.%7Bformat%7D
+https://developers.kakao.com/docs/latest/ko/local/dev-guide#search-by-keyword-request-query-category-group-code
+
+- 카카오 장소검색 문서
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).

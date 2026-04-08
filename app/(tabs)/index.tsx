@@ -2,7 +2,6 @@ import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import {
   Dimensions,
-  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -52,8 +51,7 @@ export default function HomeScreen() {
         {/* Hero Section */}
         <View style={styles.heroSection}>
           <Text style={styles.heroTitle}>
-            Find the care you need,{" "}
-            <Text style={styles.heroTitleHighlight}>effortlessly.</Text>
+            병원, <Text style={styles.heroTitleHighlight}>effortlessly.</Text>
           </Text>
 
           {/* Search Mode Toggle */}
