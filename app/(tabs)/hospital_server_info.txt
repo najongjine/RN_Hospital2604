@@ -1,0 +1,124 @@
+host:
+https://itloc-hono-hospital-2511.vercel.app/api/hospital?query=피부과&x=126.8101&y=35.1746
+
+method : GET
+
+Query Params:
+* x : 경도
+* y : 위도
+query : 검색어
+
+Response:
+{
+    "success": true,
+    "data": [
+        {
+            "address_name": "광주 광산구 월곡동 679-1",
+            "category_group_code": "HP8",
+            "category_group_name": "병원",
+            "category_name": "의료,건강 > 병원 > 피부과",
+            "distance": "591",
+            "id": "26200641",
+            "phone": "062-383-7900",
+            "place_name": "수피부과의원",
+            "place_url": "http://place.map.kakao.com/26200641",
+            "road_address_name": "광주 광산구 사암로 398",
+            "x": "126.808497549893",
+            "y": "35.1797649424865",
+            "distance_m": "591",
+            "rating": 3,
+            "congestion_level": 3,
+            "predicted_recommendation_score": 0.4823581015436699
+        },
+        {
+            "address_name": "광주 광산구 우산동 1582-1",
+            "category_group_code": "HP8",
+            "category_group_name": "병원",
+            "category_name": "의료,건강 > 병원 > 피부과",
+            "distance": "1261",
+            "id": "8585942",
+            "phone": "062-954-2292",
+            "place_name": "최선필피부과의원",
+            "place_url": "http://place.map.kakao.com/8585942",
+            "road_address_name": "광주 광산구 사암로 211",
+            "x": "126.80798279714143",
+            "y": "35.1633666555651",
+            "distance_m": "1261",
+            "rating": 5,
+            "congestion_level": 2,
+            "predicted_recommendation_score": 0.6494662223129315
+        },
+        {
+            "address_name": "광주 광산구 운남동 774-3",
+            "category_group_code": "HP8",
+            "category_group_name": "병원",
+            "category_name": "의료,건강 > 병원 > 피부과",
+            "distance": "1478",
+            "id": "8026503",
+            "phone": "062-952-0022",
+            "place_name": "운남피부과의원",
+            "place_url": "http://place.map.kakao.com/8026503",
+            "road_address_name": "광주 광산구 하남대로 292",
+            "x": "126.82552936403",
+            "y": "35.1787487061867",
+            "distance_m": "1478",
+            "rating": 3,
+            "congestion_level": 2,
+            "predicted_recommendation_score": 0.4048177326051238
+        },
+        {
+            "address_name": "광주 광산구 장덕동 1659",
+            "category_group_code": "HP8",
+            "category_group_name": "병원",
+            "category_name": "의료,건강 > 병원 > 피부과",
+            "distance": "1915",
+            "id": "1434260828",
+            "phone": "062-514-5200",
+            "place_name": "웰의원",
+            "place_url": "http://place.map.kakao.com/1434260828",
+            "road_address_name": "광주 광산구 장신로 76",
+            "x": "126.81834214809676",
+            "y": "35.19048549278154",
+            "distance_m": "1915",
+            "rating": 5,
+            "congestion_level": 1,
+            "predicted_recommendation_score": 0.6169956530259355
+        },
+        {
+            "address_name": "광주 광산구 장덕동 1661",
+            "category_group_code": "HP8",
+            "category_group_name": "병원",
+            "category_name": "의료,건강 > 병원 > 피부과",
+            "distance": "1921",
+            "id": "19236398",
+            "phone": "062-955-8582",
+            "place_name": "수완하얀피부과의원",
+            "place_url": "http://place.map.kakao.com/19236398",
+            "road_address_name": "광주 광산구 장신로 82",
+            "x": "126.818771667352",
+            "y": "35.1903914941986",
+            "distance_m": "1921",
+            "rating": 2,
+            "congestion_level": 2,
+            "predicted_recommendation_score": 0.2156214352382051
+        },
+        {
+            "address_name": "광주 광산구 장덕동 1661",
+            "category_group_code": "HP8",
+            "category_group_name": "병원",
+            "category_name": "의료,건강 > 병원 > 피부과",
+            "distance": "1926",
+            "id": "20906799",
+            "phone": "062-953-3399",
+            "place_name": "닥터지의원",
+            "place_url": "http://place.map.kakao.com/20906799",
+            "road_address_name": "광주 광산구 장신로 82",
+            "x": "126.81874300187377",
+            "y": "35.19044463111821",
+            "distance_m": "1926",
+            "rating": 5,
+            "congestion_level": 3,
+            "predicted_recommendation_score": 0.41386986495700157
+        }
+    ]
+}
