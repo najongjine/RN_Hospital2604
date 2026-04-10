@@ -1,4 +1,5 @@
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React from "react";
 import {
   Dimensions,
@@ -135,7 +136,16 @@ export default function HomeScreen() {
         {/* Department Grid */}
         <View style={styles.gridContainer}>
           {DEPARTMENTS.map((dept) => (
-            <TouchableOpacity key={dept.id} style={styles.gridItem}>
+            <TouchableOpacity
+              key={dept.id}
+              style={styles.gridItem}
+              onPress={() =>
+                router.push({
+                  pathname: "/ListScreen",
+                  params: { deptName: dept.name },
+                })
+              }
+            >
               <View style={styles.iconWrapper}>
                 <MaterialCommunityIcons
                   name={dept.icon}
