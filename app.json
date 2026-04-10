@@ -10,7 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.wildojisan.rnhospital2604"
+      "bundleIdentifier": "com.wildojisan.rnhospital2604",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "주변 병원을 찾기 위해 현재 위치를 사용합니다."
+      }
     },
     "android": {
       "package": "com.wildojisan.rnhospital2604",
