@@ -1,9 +1,7 @@
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import {
-  ActivityIndicator,
   Dimensions,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -36,64 +34,6 @@ const DEPARTMENTS = [
 
 export default function HomeScreen() {
   const [isAiMode, setIsAiMode] = React.useState(true);
-  const [apiLoading, setApiLoading] = React.useState(false);
-  const [apiResult, setApiResult] = React.useState<string>("");
-
-  const testNaverLocalApi = React.useCallback(async () => {
-    try {
-      setApiLoading(true);
-      setApiResult("");
-
-      if (Platform.OS === "web") {
-        setApiResult(
-          "Expo Web에서는 Naver Search API가 CORS로 막혀서 직접 호출할 수 없습니다. Android/iOS 앱에서 테스트하거나 서버 프록시를 통해 호출해야 합니다."
-        );
-        return;
-      }
-
-      const clientId = process.env.EXPO_PUBLIC_NAVER_GEO_Client_ID;
-      const clientSecret = process.env.EXPO_PUBLIC_NAVER_GEO_Client_Secret;
-
-      if (!clientId || !clientSecret) {
-        setApiResult("Naver API key is missing in .env");
-        return;
-      }
-
-      const url =
-        "https://openapi.naver.com/v1/search/local.json?query=" +
-        encodeURIComponent("강남역");
-
-      const resp = await fetch(url, {
-        headers: {
-          "X-Naver-Client-Id": clientId,
-          "X-Naver-Client-Secret": clientSecret,
-        },
-      });
-
-      const data = await resp.json();
-      console.log("Naver local API response:", data);
-
-      if (!resp.ok) {
-        setApiResult(
-          `Request failed: ${resp.status} ${JSON.stringify(data)}`
-        );
-        return;
-      }
-
-      setApiResult(
-        `Success: ${
-          Array.isArray(data.items) ? data.items.length : 0
-        } results found`
-      );
-    } catch (error) {
-      console.error("Naver local API error:", error);
-      setApiResult(
-        `Error: ${error instanceof Error ? error.message : "Unknown error"}`
-      );
-    } finally {
-      setApiLoading(false);
-    }
-  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -189,24 +129,6 @@ export default function HomeScreen() {
                   : "Search for specific hospitals, doctors, or treatments."}
               </Text>
             </View>
-
-            <TouchableOpacity
-              style={styles.apiTestButton}
-              onPress={testNaverLocalApi}
-              disabled={apiLoading}
-            >
-              {apiLoading ? (
-                <ActivityIndicator color={COLORS.onPrimary} />
-              ) : (
-                <Text style={styles.apiTestButtonText}>
-                  Test Naver Local API
-                </Text>
-              )}
-            </TouchableOpacity>
-
-            {apiResult ? (
-              <Text style={styles.apiResultText}>{apiResult}</Text>
-            ) : null}
           </View>
         </View>
 
