@@ -14,3 +14,10 @@ index.tsx 에서 저거 누르면
 ListScreen.tsx 화면으로 가고,
 dept.name 이것도 함께 전달해줘.
 
+
+
+
+===============
+
+
+
