@@ -35,6 +35,16 @@ const DEPARTMENTS = [
 
 export default function HomeScreen() {
   const [isAiMode, setIsAiMode] = React.useState(true);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push({
+        pathname: "/ListScreen",
+        params: { deptName: searchQuery.trim() },
+      });
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -105,6 +115,10 @@ export default function HomeScreen() {
               />
               <TextInput
                 style={styles.searchInput}
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+                onSubmitEditing={handleSearch}
+                returnKeyType="search"
                 placeholder={
                   isAiMode
                     ? "Ask AI: Where should I go?"
@@ -112,7 +126,7 @@ export default function HomeScreen() {
                 }
                 placeholderTextColor={COLORS.outline}
               />
-              <TouchableOpacity style={styles.seekButton}>
+              <TouchableOpacity style={styles.seekButton} onPress={handleSearch}>
                 <Text style={styles.seekButtonText}>
                   {isAiMode ? "Seek Advice" : "Search"}
                 </Text>
