@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -41,6 +41,7 @@ const COLORS = {
 let cachedCoordinates: Coordinates | null = null;
 
 export default function ListScreen() {
+  const router = useRouter();
   const { deptName } = useLocalSearchParams<{ deptName: string }>();
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
   const [loading, setLoading] = useState(true);
@@ -141,7 +142,15 @@ export default function ListScreen() {
   }, [fetchHospitals]);
 
   const renderItem = ({ item }: { item: Hospital }) => (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() =>
+        router.push({
+          pathname: "/DetailScreen",
+          params: { ...item },
+        })
+      }
+    >
       <View style={styles.cardHeader}>
         <Text style={styles.hospitalName} numberOfLines={1}>
           {item.place_name}
