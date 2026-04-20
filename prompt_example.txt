@@ -11,4 +11,35 @@ curl https://gen.pollinations.ai/v1/chat/completions \
     "model": "openai",
     "messages": [{"role": "user", "content": "Hello!"}]
   }'
-  
+
+response:
+  {
+  "id": "chatcmpl-abc123",
+  "object": "chat.completion",
+  "created": 1700000000,
+  "model": "openai",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hello! How can I help you today?"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 10,
+    "completion_tokens": 12,
+    "total_tokens": 22
+  }
+}
+
+Body:
+messages
+Type:array
+required
+
+--------------------
+index.tsx 에서
+일반검색이랑, ai 상담이 있는데

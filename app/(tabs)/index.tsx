@@ -31,6 +31,16 @@ const DEPARTMENTS = [
   { id: "4", name: "한의원", icon: "leaf" as const },
   { id: "5", name: "소아과", icon: "baby-face-outline" as const },
   { id: "6", name: "피부과", icon: "face-man-shimmer-outline" as const },
+  { id: "7", name: "통증클리닉", icon: "face-man-shimmer-outline" as const },
+  { id: "8", name: "신경과", icon: "face-man-shimmer-outline" as const },
+  { id: "9", name: "안과", icon: "face-man-shimmer-outline" as const },
+  { id: "10", name: "정형외과", icon: "face-man-shimmer-outline" as const },
+  { id: "11", name: "한방병원", icon: "face-man-shimmer-outline" as const },
+  { id: "11", name: "치과", icon: "face-man-shimmer-outline" as const },
+  { id: "12", name: "종합병원", icon: "face-man-shimmer-outline" as const },
+  { id: "13", name: "일반의원", icon: "face-man-shimmer-outline" as const },
+  { id: "14", name: "성형외과", icon: "face-man-shimmer-outline" as const },
+  { id: "15", name: "동물병원", icon: "face-man-shimmer-outline" as const },
 ];
 
 export default function HomeScreen() {
@@ -126,7 +136,10 @@ export default function HomeScreen() {
                 }
                 placeholderTextColor={COLORS.outline}
               />
-              <TouchableOpacity style={styles.seekButton} onPress={handleSearch}>
+              <TouchableOpacity
+                style={styles.seekButton}
+                onPress={handleSearch}
+              >
                 <Text style={styles.seekButtonText}>
                   {isAiMode ? "Seek Advice" : "Search"}
                 </Text>
