@@ -1,52 +1,14 @@
-<TouchableOpacity key={dept.id} style={styles.gridItem}>
-              <View style={styles.iconWrapper}>
-                <MaterialCommunityIcons
-                  name={dept.icon}
-                  size={32}
-                  color={COLORS.primary}
-                />
-              </View>
-              <Text style={styles.deptName}>{dept.name}</Text>
-            </TouchableOpacity>
+pollination api 에서 쓸 모델 이름은
+openai-fast.
 
------------------
-index.tsx 에서 저거 누르면
-ListScreen.tsx 화면으로 가고,
-dept.name 이것도 함께 전달해줘.
+사용할 api는
+post/v1/chat/completions
 
-
-
-
-===============
-
-
-
-ListScreen.tsx
-여기에 index.tsx DEPARTMENTS의 목록을
-눌렀을때 전달받은 데이터를 이용해서
-화면 진입시 서버에 fetch 통신을 이용해서
-데이터를 가져와줘.
-서버에 관한 명세서는
-hospital_server_info.txt 여기에 있어.
-
-데이터를 가져온후, 리스트 목록을 보여줘.
-최대한 깔끔하고 심플하게 보여줘.
-
-
-=================
-
-ListScreen.tsx 여기에서 병원 목록 누르면,
-DetailScreen.tsx 화면으로 이동하고, 
-해당 병원의 상세 정보를 보여줘.
-
-ListScreen 에 있던 병원의 모든정보를 props로 넘겨야되.
-그래야 병원 상세정보 보여질거 아니냐
-
-
-
-=========================
-
-index.tsx 에서 일반검색 있잔아,
-거기 검색창에 텍스트 입력하고 검색버튼 누르거나 키보드 엔터치면,
-ListScreen.tsx 로 이동하고, deptName 여기로 넘겨버려.
-deptName 이게 병원 이름 검색 하는 키워드로 쓰이더라고
+curl https://gen.pollinations.ai/v1/chat/completions \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "openai",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'
+  
