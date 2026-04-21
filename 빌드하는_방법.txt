@@ -1,0 +1,44 @@
+질문: 나 이앱 expo로 빌드 하고싶다.
+apk로 빌드 하고싶어.
+
+어떻게 해야되냐
+
+-----------------
+diff --git a/c:\Users\itg\Documents\ReactNative\RN_Hospital2604\eas.json b/c:\Users\itg\Documents\ReactNative\RN_Hospital2604\eas.json
+new file mode 100644
+--- /dev/null
++++ b/c:\Users\itg\Documents\ReactNative\RN_Hospital2604\eas.json
+@@ -0,0 +1,20 @@
++{
++  "cli": {
++    "version": ">= 16.0.0"
++  },
++  "build": {
++    "development": {
++      "developmentClient": true,
++      "distribution": "internal"
++    },
++    "preview": {
++      "distribution": "internal",
++      "android": {
++        "buildType": "apk"
++      }
++    },
++    "production": {
++      "autoIncrement": true
++    }
++  }
++}
+
+APK용 빌드 프로필을 추가해뒀어요. 이제 Expo 쪽에서는 preview 프로필로 바로 APK를 만들 수 있고, 정식 배포용은 production으로 AAB 중심으로 가져가면 됩니다.
+
+이 프로젝트는 이미 Expo 앱이라 EAS Build로 APK 만들면 됩니다. 제가 preview용 APK 프로필을 eas.json 에 추가해뒀어요.
+
+바로 하는 순서는 이거예요.
+
+npm install
+npx eas-cli login
+npx eas-cli build:configure
+npx eas-cli build -p android --profile preview
+
+그러면 Expo 서버에서 Android apk를 빌드해주고, 끝나면 다운로드 링크가 나옵니다.
