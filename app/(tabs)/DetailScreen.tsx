@@ -2,7 +2,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React from "react";
 import {
+  Alert,
   Linking,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -20,36 +22,108 @@ const COLORS = {
   accent: "#eef5f5",
 };
 
+type DetailParams = {
+  id?: string;
+  place_name?: string;
+  address_name?: string;
+  road_address_name?: string;
+  phone?: string;
+  category_name?: string;
+  distance?: string;
+  x?: string;
+  y?: string;
+  place_url?: string;
+};
+
+function normalizeUrl(url?: string) {
+  if (!url) return null;
+  return url.replace(/^http:\/\//i, "https://");
+}
+
 export default function DetailScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams();
+  const params = useLocalSearchParams<DetailParams>();
 
-  // params will contain fields from Hospital interface
-  const {
-    place_name,
-    address_name,
-    road_address_name,
-    phone,
-    category_name,
-    distance,
-  } = params as unknown as {
-    place_name: string;
-    address_name: string;
-    road_address_name: string;
-    phone: string;
-    category_name: string;
-    distance: string;
+  const placeName = params.place_name || "병원명 없음";
+  const roadAddress = params.road_address_name || "";
+  const jibunAddress = params.address_name || "";
+  const phone = params.phone || "";
+  const categoryName = params.category_name || "";
+  const distance = params.distance || "";
+  const longitude = params.x || "";
+  const latitude = params.y || "";
+  const placeId = params.id || "";
+  const placeUrl = normalizeUrl(params.place_url);
+  const query = roadAddress || jibunAddress || placeName;
+
+  const kakaoMapUrl =
+    placeUrl ||
+    (placeId
+      ? `https://map.kakao.com/link/map/${encodeURIComponent(placeId)}`
+      : latitude && longitude
+        ? `https://map.kakao.com/link/map/${encodeURIComponent(
+            placeName,
+          )},${encodeURIComponent(latitude)},${encodeURIComponent(longitude)}`
+        : `https://map.kakao.com/link/search/${encodeURIComponent(query)}`);
+
+  const webPreviewUrl =
+    latitude && longitude
+      ? `https://map.kakao.com/link/map/${encodeURIComponent(
+          placeName,
+        )},${encodeURIComponent(latitude)},${encodeURIComponent(longitude)}`
+      : `https://map.kakao.com/link/search/${encodeURIComponent(query)}`;
+
+  const nativeMapUrl =
+    latitude && longitude
+      ? Platform.select({
+          ios: `http://maps.apple.com/?ll=${encodeURIComponent(
+            latitude,
+          )},${encodeURIComponent(longitude)}&q=${encodeURIComponent(placeName)}`,
+          android: `geo:${encodeURIComponent(latitude)},${encodeURIComponent(
+            longitude,
+          )}?q=${encodeURIComponent(`${latitude},${longitude}(${placeName})`)}`,
+          default: kakaoMapUrl,
+        }) || kakaoMapUrl
+      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+          query,
+        )}`;
+
+  const handleCall = async () => {
+    if (!phone) return;
+    await Linking.openURL(`tel:${phone}`);
   };
 
-  const handleCall = () => {
-    if (phone) {
-      Linking.openURL(`tel:${phone}`);
+  const openUrl = async (url: string) => {
+    try {
+      await Linking.openURL(url);
+    } catch (error) {
+      console.error(error);
+      Alert.alert("지도를 열 수 없어요", "잠시 후 다시 시도해 주세요.");
     }
+  };
+
+  const renderWebMapPreview = () => {
+    if (Platform.OS !== "web") return null;
+
+    return (
+      <View style={styles.mapFrame}>
+        {React.createElement("iframe" as never, {
+          src: webPreviewUrl,
+          title: `${placeName} 지도`,
+          style: {
+            width: "100%",
+            height: "100%",
+            border: "0",
+          },
+          loading: "lazy",
+          referrerPolicy: "no-referrer-when-downgrade",
+        })}
+      </View>
+    );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header with Back Button */}
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => router.back()}
@@ -62,27 +136,25 @@ export default function DetailScreen() {
           />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>병원 상세 정보</Text>
-        <View style={{ width: 40 }} /> {/* Spacer */}
+        <View style={styles.headerSpacer} />
       </View>
 
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Hospital Card */}
         <View style={styles.mainCard}>
           <View style={styles.categoryBadge}>
             <Text style={styles.categoryText}>
-              {category_name?.split(" > ").pop()}
+              {categoryName.split(" > ").pop() || "병원"}
             </Text>
           </View>
-          <Text style={styles.hospitalName}>{place_name}</Text>
-          {distance && (
-            <Text style={styles.distanceText}>내 위치에서 {distance}m</Text>
+          <Text style={styles.hospitalName}>{placeName}</Text>
+          {!!distance && (
+            <Text style={styles.distanceText}>현재 위치에서 {distance}m</Text>
           )}
         </View>
 
-        {/* Info Sections */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>위치 정보</Text>
           <View style={styles.infoRow}>
@@ -93,9 +165,7 @@ export default function DetailScreen() {
             />
             <View style={styles.infoTextContainer}>
               <Text style={styles.infoLabel}>도로명 주소</Text>
-              <Text style={styles.infoValue}>
-                {road_address_name || "정보 없음"}
-              </Text>
+              <Text style={styles.infoValue}>{roadAddress || "정보 없음"}</Text>
             </View>
           </View>
           <View style={styles.infoRow}>
@@ -106,8 +176,46 @@ export default function DetailScreen() {
             />
             <View style={styles.infoTextContainer}>
               <Text style={styles.infoLabel}>지번 주소</Text>
-              <Text style={styles.infoValue}>{address_name || "정보 없음"}</Text>
+              <Text style={styles.infoValue}>
+                {jibunAddress || "정보 없음"}
+              </Text>
             </View>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>지도</Text>
+          <Text style={styles.mapDescription}>
+            웹에서는 더 크게 미리 보고, 앱에서는 카카오맵이나 기본 지도 앱으로
+            바로 열 수 있어요.
+          </Text>
+
+          {renderWebMapPreview()}
+
+          <View style={styles.mapButtonGroup}>
+            <TouchableOpacity
+              style={styles.mapButton}
+              onPress={() => openUrl(kakaoMapUrl)}
+            >
+              <MaterialCommunityIcons
+                name="map-search"
+                size={18}
+                color={COLORS.primary}
+              />
+              <Text style={styles.mapButtonText}>카카오맵 열기</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.mapButton}
+              onPress={() => openUrl(nativeMapUrl)}
+            >
+              <MaterialCommunityIcons
+                name="navigation-variant-outline"
+                size={18}
+                color={COLORS.primary}
+              />
+              <Text style={styles.mapButtonText}>기본 지도 앱 열기</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -129,17 +237,16 @@ export default function DetailScreen() {
                 {phone || "정보 없음"}
               </Text>
             </View>
-            {phone && (
+            {phone ? (
               <MaterialCommunityIcons
                 name="chevron-right"
                 size={20}
                 color={COLORS.outline}
               />
-            )}
+            ) : null}
           </TouchableOpacity>
         </View>
 
-        {/* Action Buttons */}
         <View style={styles.actionContainer}>
           <TouchableOpacity
             style={[styles.callButton, !phone && styles.disabledButton]}
@@ -147,7 +254,7 @@ export default function DetailScreen() {
             disabled={!phone}
           >
             <MaterialCommunityIcons name="phone" size={20} color="#fff" />
-            <Text style={styles.callButtonText}>전화 예약하기</Text>
+            <Text style={styles.callButtonText}>전화 걸기</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -177,6 +284,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "700",
     color: COLORS.text,
+  },
+  headerSpacer: {
+    width: 40,
   },
   scrollContent: {
     padding: 20,
@@ -252,6 +362,41 @@ const styles = StyleSheet.create({
   linkText: {
     color: COLORS.primary,
     textDecorationLine: "underline",
+  },
+  mapDescription: {
+    fontSize: 14,
+    lineHeight: 20,
+    color: COLORS.outline,
+    marginBottom: 14,
+  },
+  mapFrame: {
+    width: "85%",
+    alignSelf: "center",
+    height: 720,
+    overflow: "hidden",
+    borderRadius: 16,
+    backgroundColor: COLORS.accent,
+    marginBottom: 16,
+  },
+  mapButtonGroup: {
+    gap: 10,
+  },
+  mapButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#d7e3e4",
+    backgroundColor: "#f9fcfc",
+  },
+  mapButtonText: {
+    fontSize: 15,
+    fontWeight: "700",
+    color: COLORS.primary,
   },
   actionContainer: {
     marginTop: 8,
