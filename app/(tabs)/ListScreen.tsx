@@ -250,7 +250,7 @@ export default function ListScreen() {
               <View style={styles.aiRecommendationBox}>
                 <View style={styles.aiHeader}>
                   <MaterialCommunityIcons
-                    name="auto-awesome"
+                    name="apple"
                     size={20}
                     color={COLORS.primary}
                   />

@@ -29,8 +29,12 @@ export async function classifyMedicalCategories(
 ): Promise<string[]> {
   const systemPrompt = `당신은 의료 상담 보조 AI입니다. 사용자의 질문을 분석하여 다음 카테고리 목록 중 가장 적합한 카테고리들을 선택하세요.
 카테고리 목록: [${MEDICAL_CATEGORIES.join(", ")}]
-응답은 반드시 JSON 배열 형태의 문자열로만 하세요. 예: ["내과", "소아과"]`;
 
+반드시 아래 JSON 객체 형태로만 응답하세요.
+{"categories":["내과","이비인후과"]}`;
+
+  console.log("#systemPrompt:", systemPrompt);
+  console.log("#userPrompt:", userPrompt);
   try {
     const response = await fetch(POLLINATION_ENDPOINT, {
       method: "POST",
@@ -49,14 +53,14 @@ export async function classifyMedicalCategories(
     });
 
     const json = await response.json();
+    console.log("#json:", json);
     const content = json.choices[0].message.content;
+    if (!content) return [];
 
     // JSON 파싱 시도 (AI가 객체 형태로 보낼 수도 있으므로 배열 추출)
     const parsed = JSON.parse(content);
-    if (Array.isArray(parsed))
-      return parsed.filter((item) => MEDICAL_CATEGORIES.includes(item));
     if (parsed.categories && Array.isArray(parsed.categories)) {
-      return parsed.categories.filter((item: any) =>
+      return parsed.categories.filter((item: string) =>
         MEDICAL_CATEGORIES.includes(item),
       );
     }
@@ -158,16 +162,22 @@ export async function recommendHospitalsAI(
 ): Promise<{ recommendation: string; hospitals: any[] }> {
   // 1. 카테고리 분류
   const categories = await classifyMedicalCategories(userPrompt);
+  console.log("#분류된 카테고리:", categories);
 
   // 만약 분류에 실패하거나 결과가 없으면 기본 '병원'으로 검색
-  const searchCategories = categories.length > 0 ? categories : ["병원"];
+  if (!categories?.length) {
+    return {
+      recommendation: "error. prompt가 개판이군요. 재대로 입력해주셈.",
+      hospitals: [],
+    };
+  }
 
   // 2. 병원 정보 가져오기
-  const hospitals = await fetchHospitalsByCategories(searchCategories, x, y);
-
+  const hospitals = await fetchHospitalsByCategories(categories, x, y);
+  console.log("#가져온 병원 목록:", hospitals);
   // 3. 최종 추천 생성
   const recommendation = await getFinalAIRecommendation(userPrompt, hospitals);
-
+  console.log("#최종 추천 메시지:", recommendation);
   return {
     recommendation,
     hospitals,
