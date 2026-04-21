@@ -88,7 +88,7 @@ export async function fetchHospitalsByCategories(
       if (json.success && Array.isArray(json.data)) {
         json.data.forEach((hospital: any) => {
           // 병원 이름이나 ID를 키로 사용하여 중복 제거
-          const key = hospital.id || hospital.name;
+          const key = hospital.id || hospital.place_name || hospital.name;
           if (key && !allHospitalsMap.has(key)) {
             allHospitalsMap.set(key, hospital);
           }
@@ -113,7 +113,10 @@ export async function getFinalAIRecommendation(
   hospitals: any[],
 ): Promise<string> {
   const hospitalInfo = hospitals
-    .map((h) => `- ${h.name} (${h.address}, ${h.distance}m)`)
+    .map(
+      (h) =>
+        `- ${h.place_name || h.name} (${h.road_address_name || h.address_name || h.address || "주소 정보 없음"}, ${h.distance}m)`,
+    )
     .join("\n");
   const systemPrompt = `당신은 병원 추천 전문가입니다. 사용자의 질문과 주변 병원 목록을 바탕으로 가장 적합한 병원을 추천해 주세요.
 친절하고 전문적인 어조로 답변하세요. 병원 이름과 특징을 언급하며 추천 이유를 설명해 주세요.

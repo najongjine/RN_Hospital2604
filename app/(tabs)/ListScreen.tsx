@@ -11,6 +11,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { recommendHospitalsAI } from "../utils/utils";
 
 interface Hospital {
   id: string;
@@ -42,8 +43,12 @@ let cachedCoordinates: Coordinates | null = null;
 
 export default function ListScreen() {
   const router = useRouter();
-  const { deptName } = useLocalSearchParams<{ deptName: string }>();
+  const { deptName, isAi } = useLocalSearchParams<{
+    deptName: string;
+    isAi?: string;
+  }>();
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
+  const [aiRecommendation, setAiRecommendation] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -105,29 +110,39 @@ export default function ListScreen() {
     try {
       setLoading(true);
       setError(null);
+      setAiRecommendation(null);
 
       const { x, y } = await getCurrentCoordinates();
       const query = deptName || "병원";
 
-      const response = await fetch(
-        `https://itloc-hono-hospital-2511.vercel.app/api/hospital?query=${encodeURIComponent(
-          query,
-        )}&x=${x}&y=${y}`,
-      );
-
-      const json = await response.json();
-
-      if (json.success) {
-        setHospitals(json.data);
+      if (isAi === "true") {
+        const { recommendation, hospitals: aiHospitals } =
+          await recommendHospitalsAI(query, parseFloat(x), parseFloat(y));
+        setHospitals(aiHospitals);
+        setAiRecommendation(recommendation);
       } else {
-        setError("데이터를 불러오는데 실패했습니다.");
+        const response = await fetch(
+          `https://itloc-hono-hospital-2511.vercel.app/api/hospital?query=${encodeURIComponent(
+            query,
+          )}&x=${x}&y=${y}`,
+        );
+
+        const json = await response.json();
+
+        if (json.success) {
+          setHospitals(json.data);
+        } else {
+          setError("데이터를 불러오는데 실패했습니다.");
+        }
       }
     } catch (err) {
       if (
         err instanceof Error &&
         err.message === "LOCATION_PERMISSION_DENIED"
       ) {
-        setError("현재 위치 권한이 필요합니다. 권한을 허용한 뒤 다시 시도해 주세요.");
+        setError(
+          "현재 위치 권한이 필요합니다. 권한을 허용한 뒤 다시 시도해 주세요.",
+        );
       } else {
         setError("서버 통신 중 오류가 발생했습니다.");
       }
@@ -135,7 +150,7 @@ export default function ListScreen() {
     } finally {
       setLoading(false);
     }
-  }, [deptName, getCurrentCoordinates]);
+  }, [deptName, isAi, getCurrentCoordinates]);
 
   useEffect(() => {
     fetchHospitals();
@@ -230,6 +245,23 @@ export default function ListScreen() {
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContent}
           showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            aiRecommendation ? (
+              <View style={styles.aiRecommendationBox}>
+                <View style={styles.aiHeader}>
+                  <MaterialCommunityIcons
+                    name="auto-awesome"
+                    size={20}
+                    color={COLORS.primary}
+                  />
+                  <Text style={styles.aiHeaderText}>AI 추천 분석</Text>
+                </View>
+                <Text style={styles.aiRecommendationText}>
+                  {aiRecommendation}
+                </Text>
+              </View>
+            ) : null
+          }
           ListEmptyComponent={
             <View style={styles.center}>
               <Text style={styles.emptyText}>검색된 병원이 없습니다.</Text>
@@ -362,5 +394,36 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     color: COLORS.outline,
+  },
+  aiRecommendationBox: {
+    backgroundColor: "#ffffff",
+    borderRadius: 20,
+    padding: 20,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: "rgba(0, 106, 113, 0.1)",
+    shadowColor: COLORS.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 4,
+  },
+  aiHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  aiHeaderText: {
+    fontSize: 16,
+    fontWeight: "800",
+    color: COLORS.primary,
+    marginLeft: 6,
+    letterSpacing: -0.5,
+  },
+  aiRecommendationText: {
+    fontSize: 15,
+    lineHeight: 24,
+    color: COLORS.text,
+    fontWeight: "500",
   },
 });

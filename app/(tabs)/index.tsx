@@ -51,7 +51,10 @@ export default function HomeScreen() {
     if (searchQuery.trim()) {
       router.push({
         pathname: "/ListScreen",
-        params: { deptName: searchQuery.trim() },
+        params: {
+          deptName: searchQuery.trim(),
+          isAi: isAiMode ? "true" : "false",
+        },
       });
     }
   };
