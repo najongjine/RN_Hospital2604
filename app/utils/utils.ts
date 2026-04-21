@@ -56,7 +56,7 @@ export async function classifyMedicalCategories(
     if (Array.isArray(parsed))
       return parsed.filter((item) => MEDICAL_CATEGORIES.includes(item));
     if (parsed.categories && Array.isArray(parsed.categories)) {
-      return parsed.categories.filter((item) =>
+      return parsed.categories.filter((item: any) =>
         MEDICAL_CATEGORIES.includes(item),
       );
     }
